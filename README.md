@@ -16,6 +16,12 @@ compiled grammar, and `phh-ls` itself over `eglot`.
 Needs Emacs 29.1+ (built-in `treesit` and `eglot`, no third-party
 packages).
 
+**Not published to MELPA (or any other package archive).** This repo
+is pushed to `github.com/MrPoloGit/emacs-phh`, usable today via
+`straight.el`/`use-package :vc`/`package-vc-install` pointing at that
+URL, or the manual `load-path` above, but it hasn't been submitted to
+MELPA, nothing has an MELPA recipe yet.
+
 ## What's implemented (L0, highlighting)
 
 - **Filetype detection**: `.phh`/`.phhs` → `phh-ts-mode`, via `auto-mode-alist`.
@@ -61,9 +67,26 @@ are the exact same compiled Mach-O dylibs `nvim-phh/parser/*.so` already
 ships, confirmed byte-identical in provenance (same build, just renamed
 to Emacs's own `libtree-sitter-LANG.<ext>` convention, and re-confirmed
 to load and parse correctly under Emacs's `treesit`, not just assumed
-from the rename). On another platform, rebuild `tree-sitter-phh` and
-`tree-sitter-phh-actions` yourself and point `treesit-extra-load-path`
-at the result.
+from the rename). On another platform, rebuild both yourself with the
+`tree-sitter` CLI (`npm install -g tree-sitter-cli`) and a C compiler,
+naming the output extension for whichever platform you're on (Emacs's
+`treesit` picks the extension to look for from its own
+`dynamic-library-suffixes`, `.so` on Linux, `.dylib` on macOS, `.dll` on
+Windows):
+
+```sh
+# Linux
+tree-sitter build ../tree-sitter-phh -o parser/libtree-sitter-phh.so
+tree-sitter build ../tree-sitter-phh-actions -o parser/libtree-sitter-phh_actions.so
+
+# Windows
+tree-sitter build ../tree-sitter-phh -o parser/libtree-sitter-phh.dll
+tree-sitter build ../tree-sitter-phh-actions -o parser/libtree-sitter-phh_actions.dll
+```
+
+`treesit-extra-load-path` already points `phh-ts-mode-register-grammars`
+at this directory, so no further configuration is needed once the files
+are there.
 
 ## What's implemented (L1, diagnostics, hover, completion)
 

@@ -108,7 +108,7 @@ at the result instead of calling this function."
      (boolean) @font-lock-constant-face)
 
    ;; PHH-specific: the `variant' field's value gets its own face, same
-   ;; special-casing highlights.scm does .
+   ;; special-casing highlights.scm does.
    :language 'phh
    :feature 'phh-specific
    :override t
