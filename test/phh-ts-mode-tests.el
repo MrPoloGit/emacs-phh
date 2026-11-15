@@ -17,10 +17,10 @@
 (defconst phh-ts-mode-tests--dir
   (file-name-directory (or load-file-name buffer-file-name)))
 (defconst phh-ts-mode-tests--corpus-file
-  (expand-file-name "../../phh/corpus/valid/antonius-dwan-ivey-2009.phh"
+  (expand-file-name "../../phh-data/corpus/valid/antonius-dwan-ivey-2009.phh"
                      phh-ts-mode-tests--dir))
 (defconst phh-ts-mode-tests--phhs-corpus-file
-  (expand-file-name "../../phh/corpus/valid/sample.phhs" phh-ts-mode-tests--dir))
+  (expand-file-name "../../phh-data/corpus/valid/sample.phhs" phh-ts-mode-tests--dir))
 
 (defmacro phh-ts-mode-tests--with-corpus-buffer (var &rest body)
   "Visit the real corpus fixture, enable `phh-ts-mode', fontify, run BODY."

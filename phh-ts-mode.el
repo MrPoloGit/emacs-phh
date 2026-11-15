@@ -44,7 +44,7 @@
   :group 'phh)
 
 (defcustom phh-ts-mode-registry-path nil
-  "Path to the phh/registry directory.
+  "Path to the phh-data/registry directory.
 
 phh-ls has no built-in default for this, same reasoning as
  (\"never approximate silently\"),
